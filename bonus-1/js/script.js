@@ -15,11 +15,9 @@ const prev = document.querySelector('.up');
 const next = document.querySelector('.down');
 let imgTag = '';
 let carouselTag = '';
+let autoPlay;
 
-const autoPlay = setInterval(function(){
-  nextPhoto();
-}, 3000);
-
+init()
 
 for(let i = 0; i < imgList.length; i++){
   imgTag += `
@@ -47,6 +45,15 @@ prev.addEventListener('click', function(){
 });
 
 
+function init() {
+  return autoPlay = setInterval(function(){
+  nextPhoto();
+}, 2500);
+}
+
+function stopOver(){
+  clearInterval(autoPlay)
+}
 
 function nextPhoto() {
   if(elCounter >= imgList.length - 1){
@@ -78,8 +85,4 @@ function prevPhoto() {
     element[elCounter].classList.add('active');
     elementCarousel[elCounter].classList.add('active');
   }
-}
-
-function stopOver(){
-  clearInterval(autoPlay)
 }
