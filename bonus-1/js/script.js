@@ -13,9 +13,12 @@ const element = document.getElementsByClassName('items');
 const elementCarousel = document.getElementsByClassName('carousel-items');
 const prev = document.querySelector('.up');
 const next = document.querySelector('.down');
-
 let imgTag = '';
 let carouselTag = '';
+
+const autoPlay = setInterval(function(){
+  nextPhoto();
+}, 3000);
 
 
 for(let i = 0; i < imgList.length; i++){
@@ -36,6 +39,16 @@ element[elCounter].classList.add('active');
 elementCarousel[elCounter].classList.add('active');
 
 next.addEventListener('click', function(){
+  nextPhoto()
+});
+
+prev.addEventListener('click', function(){
+  prevPhoto() 
+});
+
+
+
+function nextPhoto() {
   if(elCounter >= imgList.length - 1){
     elCounter = 0;
     element[elCounter].classList.add('active');
@@ -49,9 +62,9 @@ next.addEventListener('click', function(){
     element[elCounter].classList.add('active');
     elementCarousel[elCounter].classList.add('active');
   }
-});
+}
 
-prev.addEventListener('click', function(){
+function prevPhoto() {
   if(elCounter <= 0){
     elCounter = imgList.length - 1;
     element[0].classList.remove('active');
@@ -65,4 +78,8 @@ prev.addEventListener('click', function(){
     element[elCounter].classList.add('active');
     elementCarousel[elCounter].classList.add('active');
   }
-});
+}
+
+function stopOver(){
+  clearInterval(autoPlay)
+}
